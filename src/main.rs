@@ -47,6 +47,6 @@ fn main(){
             break;
         }
     }
-    let input_step: u64 = &input_step; //make immutable ?
+    let input_step: u64 = input_step; //make immutable ?
     println!("{}", input_step);
 }
