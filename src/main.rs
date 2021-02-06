@@ -27,11 +27,13 @@ fn main(){
     // End setup
     // Read input file into Vector
     println!("infile:{} outfile:{} step:{} heartbeat:{}", infile_p.display(), outfile_p.display(), step, heartbeat);
-    let infile_ob = File::open(infile_p).unwrap();
-    let infile_reader = BufReader::new(infile_ob);
     let mut infile_lines = Vec::<String>::new();
-    for line in infile_reader.lines() {
-        infile_lines.push(line.unwrap());
+    { // Woah - scope shit be cool
+        let infile_ob = File::open(infile_p).unwrap();
+        let infile_reader = BufReader::new(infile_ob);
+        for line in infile_reader.lines() {
+            infile_lines.push(line.unwrap());
+        }
     }
     // Setup variables needed
     let mut rrd_in_db: bool = false;
