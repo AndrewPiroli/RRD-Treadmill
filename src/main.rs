@@ -91,9 +91,7 @@ fn main(){
         rrd_curr_idx += 1;
     }
     let outfile_ob = File::open(outfile_p).unwrap();
-    let outfile_writer = BufWriter::new(outfile_ob);
     for line in outfile_lines.iter(){
-        outfile_writer.write(line);
+        outfile_ob.writeln!(line);
     }
-    outfile_writer.flush();
 }
