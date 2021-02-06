@@ -47,7 +47,7 @@ fn main(){
             let found_match = temp.unwrap().get(1).map_or("", |m| m.as_str());
         }
         if found_match != "" {
-            input_step = found_match.parse().unwrap();
+            input_step = t_idx;
             break;
         }
     }
