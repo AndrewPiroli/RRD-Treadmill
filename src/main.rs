@@ -41,7 +41,7 @@ fn main(){
     let mut input_step: u64 = 0;
     let rrd_regex_step_match = Regex::new(r"<step>(\d*)").unwrap();
     for (t_idx, line) in infile_lines.iter().enumerate() {
-        let found_match = rrd_regex_step_match.captures(line).unwrap().get(1).map_or("", |m| m.as_str());;
+        let found_match = rrd_regex_step_match.captures(line).get(1).map_or("", |m| m.as_str());;
         if found_match != "" {
             input_step = found_match.parse().unwrap();
             break;
