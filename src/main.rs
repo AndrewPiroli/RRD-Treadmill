@@ -1,7 +1,7 @@
 use std::env;
 use std::path::Path;
 use std::fs::File;
-use std::io::{BufRead, BufReader, BufWriter, Write};
+use std::io::{BufRead, BufReader, Write};
 
 extern crate regex;
 use regex::Regex;
@@ -37,14 +37,12 @@ fn main(){
     }
     // Setup variables needed to detect step
     let mut rrd_in_db: bool = false;
-    let mut rrd_infile_idx: usize = 0;
     let mut rrd_curr_idx:usize = 0;
     let rrd_max_idx: usize = infile_lines.len();
     let mut input_step: usize = 0;
     let rrd_regex_step_match = Regex::new(r"<step>(\d*)").unwrap();
-    for (t_idx, line) in infile_lines.iter().enumerate() {
+    for (line in infile_lines.iter() {
         let temp = rrd_regex_step_match.captures(line);
-        let found_match = "";
         if temp.is_some(){
             let found_match = temp.unwrap().get(1).map_or("", |m| m.as_str());
             if found_match != "" {
@@ -92,6 +90,6 @@ fn main(){
     }
     let outfile_ob = File::create(outfile_p).unwrap();
     for line in outfile_lines.iter(){
-        writeln!(&outfile_ob, "{}", line);
+        let _ = writeln!(&outfile_ob, "{}", line); //assign to a temp variable to suppress warning
     }
 }
