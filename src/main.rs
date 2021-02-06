@@ -68,11 +68,11 @@ fn main(){
             }
             else if infile_lines[rrd_curr_idx].contains("<row>"){
                 for _ in 0..rowrepeat {
-                    outfile_lines.push(infile_lines[rrd_curr_idx]);
+                    outfile_lines.push(&infile_lines[rrd_curr_idx]);
                 }
             }
             else{
-                outfile_lines.push(infile_lines[rrd_curr_idx]);
+                outfile_lines.push(&infile_lines[rrd_curr_idx]);
             }
         }
         else if infile_lines[rrd_curr_idx].contains("<step>") {
@@ -86,7 +86,7 @@ fn main(){
             continue;
         }
         else {
-            outfile_lines.push(infile_lines[rrd_curr_idx]);
+            outfile_lines.push(&infile_lines[rrd_curr_idx]);
         }
         rrd_curr_idx += 1;
     }
