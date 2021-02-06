@@ -8,3 +8,7 @@ license = "MIT"
 
 [dependencies]
 regex="1"
+
+[[bin]]
+name = "rrd_treadmill"
+path = "src/main.rs"
