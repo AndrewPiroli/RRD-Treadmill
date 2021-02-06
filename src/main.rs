@@ -92,6 +92,6 @@ fn main(){
     }
     let outfile_ob = File::open(outfile_p).unwrap();
     for line in outfile_lines.iter(){
-        outfile_ob.writeln!(line);
+        writeln!(mut $outfile_ob, line);
     }
 }
