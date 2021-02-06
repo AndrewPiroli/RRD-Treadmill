@@ -90,7 +90,7 @@ fn main(){
         }
         rrd_curr_idx += 1;
     }
-    let outfile_ob = File::open(outfile_p).unwrap();
+    let outfile_ob = File::create(outfile_p).unwrap();
     for line in outfile_lines.iter(){
         writeln!(&outfile_ob, "{}", line);
     }
