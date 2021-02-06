@@ -22,9 +22,9 @@ fn main(){
     println!("infile:{} outfile:{} step:{} heartbeat:{}", infile_p.display(), outfile_p.display(), step, heartbeat);
     let infile_ob = File::open(infile_p).unwrap();
     let infile_reader = BufReader::new(infile_ob);
-    let infile_lines = Vec::<String>::new();
+    let mut infile_lines = Vec::<String>::new();
     for line in infile_reader.lines() {
-        infile_lines.insert(line.unwrap());
+        infile_lines.push(line.unwrap());
     }
     for (index, test) in infile_lines.iter().enumerate() {
         println!("{} {}", index, test);
