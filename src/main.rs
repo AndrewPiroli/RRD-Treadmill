@@ -52,7 +52,6 @@ fn main(){
         }
     }
     let input_step: usize = input_step;
-    println!("{}", input_step);
     assert!(input_step >= step);
     assert!(input_step % step == 0);
     let rowrepeat = input_step / step;
