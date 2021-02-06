@@ -41,7 +41,7 @@ fn main(){
     let rrd_max_idx: usize = infile_lines.len();
     let mut input_step: usize = 0;
     let rrd_regex_step_match = Regex::new(r"<step>(\d*)").unwrap();
-    for (line in infile_lines.iter() {
+    for (line in infile_lines.iter()) {
         let temp = rrd_regex_step_match.captures(line);
         if temp.is_some(){
             let found_match = temp.unwrap().get(1).map_or("", |m| m.as_str());
