@@ -1,5 +1,5 @@
 [package]
-name = "RRD Treadmill"
+name = "RRD-Treadmill"
 version = "0.0.1"
 authors = ["Andrew Piroli"]
 edition = "2018"
