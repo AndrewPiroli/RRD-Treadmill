@@ -38,7 +38,7 @@ fn main(){
     let mut rrd_in_db: bool = false;
     let mut rrd_infile_idx: u64 = 0;
     let rrd_max_idx: usize = infile_lines.len();
-    let mut input_step: u64 = 0;
+    let mut input_step: usize = 0;
     let rrd_regex_step_match = Regex::new(r"<step>(\d*)").unwrap();
     for (t_idx, line) in infile_lines.iter().enumerate() {
         let temp = rrd_regex_step_match.captures(line);
