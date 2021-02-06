@@ -1,6 +1,6 @@
 [package]
 name = "RRD-Treadmill"
-version = "0.0.1"
+version = "1.0.0"
 authors = ["Andrew Piroli"]
 edition = "2018"
 repository = "https://github.com/AndrewPiroli/RRD-Treadmill"
