@@ -27,6 +27,6 @@ fn main(){
         infile_lines.append(line.unwrap());
     }
     for (index, test) in infile_lines.enumerate() {
-        println("{} {}", index, test);
+        println!("{} {}", index, test);
     }
 }
