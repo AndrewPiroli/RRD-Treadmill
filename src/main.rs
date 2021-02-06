@@ -44,7 +44,7 @@ fn main(){
         let temp = rrd_regex_step_match.captures(line);
         let found_match = "";
         if temp.is_some(){
-            let found_match = temp.get(1).map_or("", |m| m.as_str());
+            let found_match = temp.unwrap().get(1).map_or("", |m| m.as_str());
         }
         if found_match != "" {
             input_step = found_match.parse().unwrap();
