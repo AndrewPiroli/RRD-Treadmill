@@ -76,10 +76,10 @@ fn main(){
             }
         }
         else if infile_lines[rrd_curr_idx].contains("<step>") {
-            outfile_lines.push(format!("<step>{}</step>\n", step));
+            outfile_lines.push(format!("<step>{}</step>", step));
         }
         else if infile_lines[rrd_curr_idx].contains("minimal_heartbeat") {
-            outfile_lines.push(format!("<minimal_heartbeat>{}</minimal_heartbeat>\n", heartbeat));
+            outfile_lines.push(format!("<minimal_heartbeat>{}</minimal_heartbeat>", heartbeat));
         }
         else if infile_lines[rrd_curr_idx].contains("<database>") {
             rrd_in_db = true;
