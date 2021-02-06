@@ -18,11 +18,10 @@ fn main(){
     // Arguments: input output step heartbeat
     // input and output are Paths
     // step and heartbeat should be integers
-    /*if args.len() != 5 {
+    if args.len() != 5 {
         printhelp(args[0].clone());
         return;
-    }*/
-    assert!(args.len() == 5, format!("Usage: {} input_file output_file step hearbeat", args[0]));
+    }
     let (infile_p, outfile_p): (&Path, &Path) = (Path::new(&args[1]), Path::new(&args[2]));
     let (step, heartbeat): (u64, u64) = (args[3].parse().unwrap(), args[4].parse().unwrap());
     // End setup
