@@ -42,6 +42,7 @@ fn main(){
     let rrd_regex_step_match = Regex::new(r"<step>(\d*)").unwrap();
     for (t_idx, line) in infile_lines.iter().enumerate() {
         let temp = rrd_regex_step_match.captures(line);
+        let found_match = "";
         if temp.is_some(){
             let found_match = temp.get(1).map_or("", |m| m.as_str());
         }
