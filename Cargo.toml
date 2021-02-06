@@ -1,0 +1,10 @@
+[package]
+name = "RRD Treadmill"
+version = "0"
+authors = ["Andrew Piroli"]
+edition = "2018"
+repository = "https://github.com/AndrewPiroli/RRD-Treadmill"
+license = "MIT"
+
+[dependencies]
+regex="1"
