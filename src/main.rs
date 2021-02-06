@@ -24,9 +24,9 @@ fn main(){
     let infile_reader = BufReader::new(infile_ob);
     let infile_lines = Vec::<String>::new();
     for line in infile_reader.lines() {
-        infile_lines.append(line.unwrap());
+        infile_lines.insert(line.unwrap());
     }
-    for (index, test) in infile_lines.enumerate() {
+    for (index, test) in infile_lines.iter().enumerate() {
         println!("{} {}", index, test);
     }
 }
