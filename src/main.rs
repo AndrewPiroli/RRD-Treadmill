@@ -23,7 +23,7 @@ fn main(){
         return;
     }
     let (infile_p, outfile_p): (&Path, &Path) = (Path::new(&args[1]), Path::new(&args[2])); // tuple unpacking pog
-    let (step, heartbeat): (u64, u64) = (args[3].parse().unwrap(), args[4].parse().unwrap());
+    let (step, heartbeat): (usize, usize) = (args[3].parse().unwrap(), args[4].parse().unwrap());
     // End setup
     // Read input file into Vector56
     let mut infile_lines = Vec::<String>::new();
@@ -34,9 +34,9 @@ fn main(){
             infile_lines.push(line.unwrap());
         }
     }
-    // Setup variables needed
+    // Setup variables needed to detect step
     let mut rrd_in_db: bool = false;
-    let mut rrd_infile_idx: u64 = 0;
+    let mut rrd_infile_idx: usize = 0;
     let rrd_max_idx: usize = infile_lines.len();
     let mut input_step: usize = 0;
     let rrd_regex_step_match = Regex::new(r"<step>(\d*)").unwrap();
@@ -53,4 +53,7 @@ fn main(){
     }
     let input_step: usize = input_step;
     println!("{}", input_step);
+    assert!(input_step >= step);
+    assert!(input_step % step == 0);
+    let rowrepeat = input_step / step;
 }
