@@ -47,5 +47,6 @@ fn main(){
             break;
         }
     }
+    assert!(input_step);
     println!("{}", input_step);
 }
