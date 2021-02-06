@@ -15,8 +15,8 @@ fn main(){
         printhelp(args[0].clone());
         return;
     }
-    let (infile, outfile): (&Path, &Path) = (Path::new(args[1]), Path::new(args[2]));
+    let (infile, outfile): (&Path, &Path) = (Path::new(&args[1]), Path::new(&args[2]));
     let (step, heartbeat): (u64, u64) = (args[3].parse().unwrap(), args[4].parse().unwrap());
-    println!("infile:{} outfile:{} step:{} heartbeat:{}", infile, outfile, step, heartbeat);
+    println!("infile:{} outfile:{} step:{} heartbeat:{}", infile.display(), outfile.display(), step, heartbeat);
     println!("Hello rust!");
 }
