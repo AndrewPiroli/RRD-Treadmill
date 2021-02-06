@@ -57,13 +57,13 @@ fn main(){
     assert!(input_step >= step);
     assert!(input_step % step == 0);
     let rowrepeat = input_step / step;
-    while true {
+    loop {
         if rrd_curr_idx == rrd_max_idx{
             break;
         }
         if rrd_in_db {
             if infile_lines[rrd_curr_idx].contains("</database>"){
-                rrd_in_db = True;
+                rrd_in_db = true;
                 continue;
             }
             else if infile_lines[rrd_curr_idx].contains("<row>"){
@@ -88,6 +88,6 @@ fn main(){
         else {
             outfile_lines.push(infile_lines[rrd_curr_idx]);
         }
-        rrd_curr_idx++;
+        rrd_curr_idx += 1;
     }
 }
