@@ -63,7 +63,7 @@ fn main(){
         }
         if rrd_in_db {
             if infile_lines[rrd_curr_idx].contains("</database>"){
-                rrd_in_db = true;
+                rrd_in_db = false;
                 continue;
             }
             else if infile_lines[rrd_curr_idx].contains("<row>"){
