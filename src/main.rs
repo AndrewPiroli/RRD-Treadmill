@@ -38,7 +38,7 @@ fn main(){
     let mut rrd_in_db: bool = false;
     let mut rrd_infile_idx: u64 = 0;
     let rrd_max_idx: usize = infile_lines.len();
-    let input_step: u64;
+    let input_step: u64 = -1;
     let rrd_regex_step_match = Regex::new(r"<step>(\d*)").unwrap();
     for (t_idx, line) in infile_lines.iter().enumerate() {
         let found_match = rrd_regex_step_match.captures(line).unwrap().get(1).map_or("", |m| m.as_str());;
@@ -47,6 +47,5 @@ fn main(){
             break;
         }
     }
-    assert!(input_step);
     println!("{}", input_step);
 }
