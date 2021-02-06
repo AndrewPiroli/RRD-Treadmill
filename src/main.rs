@@ -34,9 +34,9 @@ fn main(){
         infile_lines.push(line.unwrap());
     }
     // Setup variables needed
-    let mut rrd_in_db: bool = False;
+    let mut rrd_in_db: bool = false;
     let mut rrd_infile_idx: u64 = 0;
-    let rrd_max_idx: u64 = &infile_lines.len().into();
+    let rrd_max_idx: usize = infile_lines.len();
     let input_step: u64; //Fill in from file once we match into it.
     let rrd_regex_step_match = Regex::new(r"<step>(\d*)").unwrap();
 }
