@@ -45,12 +45,12 @@ fn main(){
         let found_match = "";
         if temp.is_some(){
             let found_match = temp.unwrap().get(1).map_or("", |m| m.as_str());
-        }
-        if found_match != "" {
-            input_step = t_idx;
-            break;
+            if found_match != "" {
+                input_step = found_match.parse().unwrap();
+                break;
+            }
         }
     }
-    let input_step: usize = input_step; //make immutable ?
+    let input_step: usize = input_step;
     println!("{}", input_step);
 }
