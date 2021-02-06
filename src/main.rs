@@ -1,7 +1,7 @@
 use std::env;
 use std::path::Path;
 use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::io::{BufRead, BufReader, BufWriter};
 
 extern crate regex;
 use regex::Regex;
@@ -90,4 +90,10 @@ fn main(){
         }
         rrd_curr_idx += 1;
     }
+    let outfile_ob = File::open(outfile_p).unwrap();
+    let oufile_writer = BufWriter::new(outfile_ob);
+    for line in outfile_lines.iter(){
+        outfile_writer.write(line);
+    }
+    outfile_writer.flush();
 }
