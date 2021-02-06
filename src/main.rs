@@ -22,11 +22,10 @@ fn main(){
         printhelp(args[0].clone());
         return;
     }
-    let (infile_p, outfile_p): (&Path, &Path) = (Path::new(&args[1]), Path::new(&args[2]));
+    let (infile_p, outfile_p): (&Path, &Path) = (Path::new(&args[1]), Path::new(&args[2])); // tuple unpacking pog
     let (step, heartbeat): (u64, u64) = (args[3].parse().unwrap(), args[4].parse().unwrap());
     // End setup
-    // Read input file into Vector
-    println!("infile:{} outfile:{} step:{} heartbeat:{}", infile_p.display(), outfile_p.display(), step, heartbeat);
+    // Read input file into Vector56
     let mut infile_lines = Vec::<String>::new();
     { // Woah - scope shit be cool
         let infile_ob = File::open(infile_p).unwrap();
@@ -39,6 +38,14 @@ fn main(){
     let mut rrd_in_db: bool = false;
     let mut rrd_infile_idx: u64 = 0;
     let rrd_max_idx: usize = infile_lines.len();
-    let input_step: u64; //Fill in from file once we match into it.
+    let input_step: u64;
     let rrd_regex_step_match = Regex::new(r"<step>(\d*)").unwrap();
+    for (t_idx, line) in infile_lines.iter().enumerate() {
+        let found_match = rrd_regex_step_match.captures(line).unwrap().get(1);
+        if found_match != None {
+            input_step = found_match.parse().unwrap();
+            break;
+        }
+    }
+    println!("{}", input_step);
 }
