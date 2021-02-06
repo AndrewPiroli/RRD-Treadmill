@@ -25,7 +25,8 @@ fn main(){
     let (infile_p, outfile_p): (&Path, &Path) = (Path::new(&args[1]), Path::new(&args[2])); // tuple unpacking pog
     let (step, heartbeat): (usize, usize) = (args[3].parse().unwrap(), args[4].parse().unwrap());
     // End setup
-    // Read input file into Vector56
+    let mut outfile_lines = Vec::<String>::new();
+    // Read input file into Vector
     let mut infile_lines = Vec::<String>::new();
     { // Woah - scope shit be cool
         let infile_ob = File::open(infile_p).unwrap();
@@ -37,6 +38,7 @@ fn main(){
     // Setup variables needed to detect step
     let mut rrd_in_db: bool = false;
     let mut rrd_infile_idx: usize = 0;
+    let mut rrd_curr_idx:usize = 0;
     let rrd_max_idx: usize = infile_lines.len();
     let mut input_step: usize = 0;
     let rrd_regex_step_match = Regex::new(r"<step>(\d*)").unwrap();
@@ -55,4 +57,37 @@ fn main(){
     assert!(input_step >= step);
     assert!(input_step % step == 0);
     let rowrepeat = input_step / step;
+    while true {
+        if rrd_curr_idx == rrd_max_idx{
+            break;
+        }
+        if rrd_in_db {
+            if infile_lines[rrd_curr_idx].contains("</database>"){
+                rrd_in_db = True;
+                continue;
+            }
+            else if infile_lines[rrd_curr_idx].contains("<row>"){
+                for _ in 0..rowrepeat {
+                    outfile_lines.push(infile_lines[rrd_curr_idx]);
+                }
+            }
+            else{
+                outfile_lines.push(infile_lines[rrd_curr_idx]);
+            }
+        }
+        else if infile_lines[rrd_curr_idx].contains("<step>") {
+            outfile_lines.push(format!("<step>{}</step>", step));
+        }
+        else if infile_lines[rrd_curr_idx].contains("minimal_heartbeat") {
+            outfile_lines.push(format!("<minimal_heartbeat>{}</minimal_heartbeat>", heartbeat));
+        }
+        else if infile_lines[rrd_curr_idx].contains("<database>") {
+            rrd_in_db = true;
+            continue;
+        }
+        else {
+            outfile_lines.push(infile_lines[rrd_curr_idx]);
+        }
+        rrd_curr_idx++;
+    }
 }
