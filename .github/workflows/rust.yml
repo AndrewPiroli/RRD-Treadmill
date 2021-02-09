@@ -18,3 +18,8 @@ jobs:
       uses:  stevenleadbeater/rust-musl-builder@master
       with:
           args: /bin/bash -c "cargo build --release --target=x86_64-unknown-linux-musl"
+    - name:   Upload result
+      uses: actions/upload-artifact@v2
+      with:
+        name:  rrd_treadmill_x86_64-unknown-linux-musl
+        path:  target/x86_64-unknown-linux-musl/release/rrd_treadmill
