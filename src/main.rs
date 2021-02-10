@@ -92,8 +92,8 @@ fn main(){
     else {
         assert!(step % input_step == 0);
         let rowskip:usize = step / input_step;
+        let mut skip_cnt = rowskip.clone();
         loop {
-            let mut skip_cnt = rowskip.clone();
             if rrd_curr_idx == rrd_max_idx{
                 break;
             }
