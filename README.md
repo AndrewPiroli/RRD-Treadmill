@@ -29,18 +29,22 @@ Step 4) Copy back
 
 ## Limitations
 
-It only can decrease step. You can't make it longer.
+~~It only can decrease step. You can't make it longer.~~
+
+Now possible to increase step. (Beta level feature)
 
 &nbsp;
 
 It can only change the step to a numerical factor of the existing step. 
 
-300 -> 60 :ok_hand: 
+300 <-> 60 :ok_hand: 
 
-300 -> 100 :ok_hand:
+300 <-> 100 :ok_hand:
 
-300 -> 200 :-1:
+300 <-> 200 :-1:
+
+
 
 &nbsp;
 
-It doesn't do any interpolations or anything smart with the records, just duplicates rows until it fills in the time properly.
+It doesn't do any interpolations or anything smart with the records, just duplicates/skips rows until it fills in the time properly.
