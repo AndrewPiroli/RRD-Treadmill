@@ -104,7 +104,7 @@ fn main(){
                     continue;
                 }
                 else if infile_lines[rrd_curr_idx].contains("<row>"){
-                    if skip_cnt == rowskip:
+                    if skip_cnt == rowskip{
                         outfile_lines.push(infile_lines[rrd_curr_idx].clone());
                         skip_cnt = 0;
                     }
