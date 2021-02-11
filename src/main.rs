@@ -61,7 +61,7 @@ fn main(){
     else {
         rowrepeat = step / input_step;
     }
-    let mut skip_cnt = rowskip.clone();
+    let mut skip_cnt = rowrepeat.clone();
     loop {
         if rrd_curr_idx == rrd_max_idx{
             break;
@@ -74,7 +74,7 @@ fn main(){
             }
             else if infile_lines[rrd_curr_idx].contains("<row>"){
                 if going_up {
-                    if skip_cnt == rowskip{
+                    if skip_cnt == rowrepeat{
                         outfile_lines.push(infile_lines[rrd_curr_idx].clone());
                         skip_cnt = 0;
                     }
