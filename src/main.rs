@@ -75,7 +75,7 @@ fn main(){
                 continue;
             }
             else if infile_lines[rrd_curr_idx].contains("<row>"){
-                if going_up {
+                if !going_up {
                     if skip_cnt == rowrepeat{
                         outfile_lines.push(infile_lines[rrd_curr_idx].clone());
                         skip_cnt = 0;
