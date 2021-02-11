@@ -52,58 +52,28 @@ fn main(){
         }
     }
     let input_step: usize = input_step;
-    if input_step > step{
-        assert!(input_step % step == 0);
-        let rowrepeat = input_step / step;
-        loop {
-            if rrd_curr_idx == rrd_max_idx{
-                break;
-            }
-            if rrd_in_db {
-                if infile_lines[rrd_curr_idx].contains("</database>"){
-                    rrd_in_db = false;
-                    continue;
-                }
-                else if infile_lines[rrd_curr_idx].contains("<row>"){
-                    for _ in 0..rowrepeat {
-                        outfile_lines.push(infile_lines[rrd_curr_idx].clone());
-                    }
-                }
-                else{
-                    outfile_lines.push(infile_lines[rrd_curr_idx].clone());
-                }
-            }
-            else if infile_lines[rrd_curr_idx].contains("<step>") {
-                outfile_lines.push(format!("<step>{}</step>", step));
-            }
-            else if infile_lines[rrd_curr_idx].contains("minimal_heartbeat") {
-                outfile_lines.push(format!("<minimal_heartbeat>{}</minimal_heartbeat>", heartbeat));
-            }
-            else if infile_lines[rrd_curr_idx].contains("<database>") {
-                rrd_in_db = true;
-                continue;
-            }
-            else {
-                outfile_lines.push(infile_lines[rrd_curr_idx].clone());
-            }
-            rrd_curr_idx += 1;
-        }
+    assert!(step % input_step == 0);
+    let going_up:bool = input_step > step;
+    let rowrepeat:usize;
+    if going_up {
+        rowrepeat = input_step / step;
     }
     else {
-        assert!(step % input_step == 0);
-        let rowskip:usize = step / input_step;
-        let mut skip_cnt = rowskip.clone();
-        loop {
-            if rrd_curr_idx == rrd_max_idx{
-                break;
+        rowrepeat = step / input_step;
+    }
+    let mut skip_cnt = rowskip.clone();
+    loop {
+        if rrd_curr_idx == rrd_max_idx{
+            break;
+        }
+        if rrd_in_db {
+            if infile_lines[rrd_curr_idx].contains("</database>"){
+                rrd_in_db = false;
+                skip_cnt = 0;
+                continue;
             }
-            if rrd_in_db {
-                if infile_lines[rrd_curr_idx].contains("</database>"){
-                    rrd_in_db = false;
-                    skip_cnt = 0;
-                    continue;
-                }
-                else if infile_lines[rrd_curr_idx].contains("<row>"){
+            else if infile_lines[rrd_curr_idx].contains("<row>"){
+                if going_up {
                     if skip_cnt == rowskip{
                         outfile_lines.push(infile_lines[rrd_curr_idx].clone());
                         skip_cnt = 0;
@@ -112,26 +82,31 @@ fn main(){
                         skip_cnt += 1;
                     }
                 }
-                else{
-                    outfile_lines.push(infile_lines[rrd_curr_idx].clone());
+                else {
+                    for _ in 0..rowrepeat {
+                        outfile_lines.push(infile_lines[rrd_curr_idx].clone());
+                    }
                 }
             }
-            else if infile_lines[rrd_curr_idx].contains("<step>") {
-                outfile_lines.push(format!("<step>{}</step>", step));
-            }
-            else if infile_lines[rrd_curr_idx].contains("minimal_heartbeat") {
-                outfile_lines.push(format!("<minimal_heartbeat>{}</minimal_heartbeat>", heartbeat));
-            }
-            else if infile_lines[rrd_curr_idx].contains("<database>") {
-                rrd_in_db = true;
-                skip_cnt = 0;
-                continue;
-            }
-            else {
+            else{
                 outfile_lines.push(infile_lines[rrd_curr_idx].clone());
             }
-            rrd_curr_idx += 1;
         }
+        else if infile_lines[rrd_curr_idx].contains("<step>") {
+            outfile_lines.push(format!("<step>{}</step>", step));
+        }
+        else if infile_lines[rrd_curr_idx].contains("minimal_heartbeat") {
+            outfile_lines.push(format!("<minimal_heartbeat>{}</minimal_heartbeat>", heartbeat));
+        }
+        else if infile_lines[rrd_curr_idx].contains("<database>") {
+            rrd_in_db = true;
+            skip_cnt = 0;
+            continue;
+        }
+        else {
+            outfile_lines.push(infile_lines[rrd_curr_idx].clone());
+        }
+        rrd_curr_idx += 1;
     }
     let outfile_ob = File::create(outfile_p).unwrap();
     for line in outfile_lines.iter(){
