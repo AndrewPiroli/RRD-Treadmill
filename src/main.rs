@@ -52,14 +52,16 @@ fn main(){
         }
     }
     let input_step: usize = input_step;
-    assert!(step % input_step == 0);
+    
     let going_up:bool = input_step > step;
     let rowrepeat:usize;
     if going_up {
         rowrepeat = input_step / step;
+        assert!(input_step % step == 0);
     }
     else {
         rowrepeat = step / input_step;
+        assert!(step % input_step == 0);
     }
     let mut skip_cnt = rowrepeat.clone();
     loop {
