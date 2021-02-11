@@ -52,7 +52,6 @@ fn main(){
         }
     }
     let input_step: usize = input_step;
-    
     let going_up:bool = input_step > step;
     let rowrepeat:usize;
     if going_up {
@@ -75,18 +74,19 @@ fn main(){
                 continue;
             }
             else if infile_lines[rrd_curr_idx].contains("<row>"){
-                if !going_up {
+                if going_up {
+                    for _ in 0..rowrepeat {
+                        outfile_lines.push(infile_lines[rrd_curr_idx].clone());
+                    }
+
+                }
+                else {
                     if skip_cnt == rowrepeat{
                         outfile_lines.push(infile_lines[rrd_curr_idx].clone());
                         skip_cnt = 0;
                     }
                     else{
                         skip_cnt += 1;
-                    }
-                }
-                else {
-                    for _ in 0..rowrepeat {
-                        outfile_lines.push(infile_lines[rrd_curr_idx].clone());
                     }
                 }
             }
