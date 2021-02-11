@@ -5,7 +5,7 @@
  It's way faster!
 
 
-This bad boy takes RRD files that have been dumped to XML, installs a new step and heartbeat in there, and duplicates the records enough times to keep the timescale accurate.
+This bad boy takes RRD files that have been dumped to XML, installs a new step and heartbeat in there, and duplicates/removes the records enough times to keep the timescale accurate.
 
 Use at your own risk!
 
@@ -31,7 +31,7 @@ Step 4) Copy back
 
 ~~It only can decrease step. You can't make it longer.~~
 
-Now possible to increase step. (Beta level feature)
+Now possible to increase step. (~~Beta~~ RC level feature)
 
 &nbsp;
 
