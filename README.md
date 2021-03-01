@@ -38,7 +38,7 @@ It can only change the step to a numerical factor of the existing step.
 
 300 <-> 200 :-1:
 
-If you wan't to convert between steps that are not factors, you can do so by finding the GCF and doing a 2-step conversion, but beware this causes a higher level of innacuracy.
+If you want to convert between steps that are not factors, you can do so by finding the GCF and doing a 2-step conversion, but beware this causes a higher level of innacuracy.
 
 300 <-> 100 <-> 200 :ok_hand:
 
